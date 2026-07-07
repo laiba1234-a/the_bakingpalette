@@ -254,11 +254,18 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: center;
   padding-top: 84px;
-  background: radial-gradient(circle at 80% 20%, var(--color-blush) 0%, transparent 45%),
-    radial-gradient(circle at 10% 80%, var(--color-cream-dark) 0%, transparent 50%),
-    var(--color-cream);
+  background-color: var(--color-cream);
+  background-image: radial-gradient(circle at 80% 20%, var(--color-blush) 0%, transparent 45%),
+    radial-gradient(circle at 10% 80%, var(--color-cream-dark) 0%, transparent 50%);
+  background-size: 160% 160%, 160% 160%;
+  background-position: 0% 0%, 100% 100%;
+  animation: hero-drift 16s ease-in-out infinite alternate;
   position: relative;
   overflow: hidden;
+}
+
+@keyframes hero-drift {
+  to { background-position: 20% 10%, 80% 90%; }
 }
 
 .hero .container {
@@ -459,6 +466,11 @@ h1, h2, h3, h4 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.04);
 }
 
 .gallery-filters {
@@ -515,6 +527,13 @@ h1, h2, h3, h4 {
 
 .lightbox-content .placeholder-tile {
   height: 100%;
+  border-radius: var(--radius-lg);
+}
+
+.lightbox-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: var(--radius-lg);
 }
 
@@ -596,7 +615,7 @@ h1, h2, h3, h4 {
 /* ---------- Testimonials ---------- */
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 28px;
 }
 
@@ -966,5 +985,351 @@ h1, h2, h3, h4 {
     flex-direction: column;
     gap: 8px;
     text-align: center;
+  }
+}
+
+/* ========================================================
+   Dynamic & Modern Enhancements
+   ======================================================== */
+
+/* ---------- Navbar scroll state ---------- */
+.navbar {
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+.navbar .container {
+  transition: height var(--transition);
+}
+
+.navbar.scrolled {
+  background: rgba(253, 246, 238, 0.97);
+  box-shadow: 0 8px 24px rgba(61, 43, 31, 0.12);
+}
+
+.navbar.scrolled .container {
+  height: 68px;
+}
+
+.logo img {
+  transition: height var(--transition), width var(--transition);
+}
+
+.navbar.scrolled .logo img {
+  height: 44px;
+  width: 44px;
+}
+
+/* ---------- Shimmering script text ---------- */
+.hero h1 .script {
+  background: linear-gradient(90deg, var(--color-gold-dark) 0%, var(--color-gold) 25%, var(--color-blush-dark) 50%, var(--color-gold) 75%, var(--color-gold-dark) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+@keyframes shimmer {
+  to { background-position: -200% center; }
+}
+
+/* ---------- Hero entrance ---------- */
+.hero-text > * {
+  opacity: 0;
+  animation: fade-up 0.8s ease forwards;
+}
+
+.hero-text > *:nth-child(1) { animation-delay: 0.05s; }
+.hero-text > *:nth-child(2) { animation-delay: 0.15s; }
+.hero-text > *:nth-child(3) { animation-delay: 0.25s; }
+.hero-text > *:nth-child(4) { animation-delay: 0.35s; }
+.hero-text > *:nth-child(5) { animation-delay: 0.45s; }
+
+.hero-visual {
+  opacity: 0;
+  animation: fade-up 0.9s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.page-header .container > * {
+  opacity: 0;
+  animation: fade-up 0.7s ease forwards;
+}
+
+.page-header .container > *:nth-child(1) { animation-delay: 0.05s; }
+.page-header .container > *:nth-child(2) { animation-delay: 0.15s; }
+.page-header .container > *:nth-child(3) { animation-delay: 0.25s; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Button shine sweep ---------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.55) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+  z-index: -1;
+}
+
+.btn--outline::before {
+  background: linear-gradient(120deg, transparent 30%, rgba(201, 161, 90, 0.35) 50%, transparent 70%);
+}
+
+.btn:hover::before {
+  transform: translateX(120%);
+}
+
+/* ---------- Floating dessert particles ---------- */
+.hero,
+.page-header,
+.cta-banner {
+  position: relative;
+}
+
+.hero > .container,
+.page-header > .container,
+.cta-banner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bg-sprinkles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-sprinkles .sprinkle {
+  position: absolute;
+  bottom: -10%;
+  left: var(--sx, 50%);
+  font-size: var(--ssize, 1.2rem);
+  opacity: 0;
+  animation: sprinkle-float var(--sdur, 12s) linear infinite;
+  animation-delay: var(--sdelay, 0s);
+  filter: drop-shadow(0 4px 8px rgba(61, 43, 31, 0.15));
+}
+
+@keyframes sprinkle-float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  8% { opacity: 0.6; }
+  92% { opacity: 0.55; }
+  100% { transform: translateY(-115vh) rotate(360deg); opacity: 0; }
+}
+
+/* ---------- Floating card bob + orbit ring ---------- */
+.hero-visual .floating-card {
+  animation: fade-up 0.9s ease forwards, bob 4.5s ease-in-out 0.9s infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero-visual .placeholder-tile {
+  position: relative;
+}
+
+.hero-visual .placeholder-tile::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: inherit;
+  border: 2px dashed rgba(201, 161, 90, 0.5);
+  animation: spin-slow 24s linear infinite;
+  z-index: -1;
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Tilt cards (JS-driven) ---------- */
+.highlights-grid,
+.testimonials-grid,
+.menu-grid {
+  perspective: 1200px;
+}
+
+.highlight-card,
+.testimonial-card,
+.menu-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.15s ease-out, box-shadow var(--transition);
+}
+
+.testimonial-card:hover,
+.menu-card:hover {
+  box-shadow: var(--shadow-strong);
+}
+
+/* ---------- Icon wiggle on hover ---------- */
+.highlight-card:hover .icon,
+.value-item:hover .icon,
+.process-step:hover .step-number {
+  animation: wiggle 0.6s ease;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(-10deg) scale(1.12); }
+  75% { transform: rotate(10deg) scale(1.12); }
+}
+
+/* ---------- Staggered / richer reveal ---------- */
+.reveal {
+  filter: blur(6px);
+  transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
+}
+
+.reveal.visible {
+  filter: blur(0);
+}
+
+.highlights-grid .reveal:nth-child(1) { transition-delay: 0s; }
+.highlights-grid .reveal:nth-child(2) { transition-delay: 0.12s; }
+.highlights-grid .reveal:nth-child(3) { transition-delay: 0.24s; }
+
+.gallery-grid .reveal:nth-child(3n+1) { transition-delay: 0s; }
+.gallery-grid .reveal:nth-child(3n+2) { transition-delay: 0.08s; }
+.gallery-grid .reveal:nth-child(3n+3) { transition-delay: 0.16s; }
+
+.process-grid .reveal:nth-child(1) { transition-delay: 0s; }
+.process-grid .reveal:nth-child(2) { transition-delay: 0.1s; }
+.process-grid .reveal:nth-child(3) { transition-delay: 0.2s; }
+.process-grid .reveal:nth-child(4) { transition-delay: 0.3s; }
+
+.testimonials-grid .reveal:nth-child(1) { transition-delay: 0s; }
+.testimonials-grid .reveal:nth-child(2) { transition-delay: 0.12s; }
+.testimonials-grid .reveal:nth-child(3) { transition-delay: 0.24s; }
+.testimonials-grid .reveal:nth-child(4) { transition-delay: 0.36s; }
+
+.menu-grid .reveal:nth-child(1) { transition-delay: 0s; }
+.menu-grid .reveal:nth-child(2) { transition-delay: 0.1s; }
+.menu-grid .reveal:nth-child(3) { transition-delay: 0.2s; }
+.menu-grid .reveal:nth-child(4) { transition-delay: 0.3s; }
+
+.about-grid .reveal:nth-child(1) { transition-delay: 0s; }
+.about-grid .reveal:nth-child(2) { transition-delay: 0.15s; }
+
+/* ---------- Gallery hover overlay + lightbox motion ---------- */
+.gallery-item::after {
+  content: '🔍';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  background: rgba(61, 43, 31, 0.35);
+  color: var(--color-white);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.lightbox-content {
+  transform: scale(0.9);
+  transition: transform var(--transition);
+}
+
+.lightbox.open .lightbox-content {
+  transform: scale(1);
+}
+
+/* ---------- CTA banner icing-drip edge ---------- */
+.cta-banner {
+  overflow: hidden;
+}
+
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: radial-gradient(circle at 12px 0, transparent 11px, var(--color-cream) 12px) 0 0 / 24px 24px repeat-x;
+  z-index: 2;
+}
+
+/* ---------- Back to top button ---------- */
+.back-to-top {
+  position: fixed;
+  right: 26px;
+  bottom: 26px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+  color: var(--color-white);
+  border: none;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-strong);
+  opacity: 0;
+  transform: translateY(16px) scale(0.8);
+  pointer-events: none;
+  transition: opacity var(--transition), transform var(--transition);
+  z-index: 900;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .hero-text > *,
+  .hero-visual,
+  .page-header .container > * {
+    opacity: 1;
+  }
+
+  .bg-sprinkles {
+    display: none;
   }
 }
