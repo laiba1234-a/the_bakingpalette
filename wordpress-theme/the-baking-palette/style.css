@@ -1,0 +1,13 @@
+/*
+Theme Name: The Baking Palette
+Theme URI: https://the-bakingpalette.example
+Author: The Baking Palette
+Description: Custom theme for The Baking Palette, a premium custom cake and cupcake studio in Sialkot.
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Text Domain: the-baking-palette
+*/
+
+/* Actual styles are enqueued from /css/style.css via functions.php.
+   This file only needs the header above for WordPress to recognize the theme. */
