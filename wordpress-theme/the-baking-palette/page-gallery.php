@@ -11,7 +11,7 @@ $img = get_template_directory_uri() . '/images/gallery/';
     <div class="container">
       <span class="section-label">Our Creations</span>
       <h1 class="section-title">Cake Gallery</h1>
-      <p class="section-subtitle" style="margin:0 auto;">Every cake below was made for a real celebration &mdash; browse by occasion or see everything.</p>
+      <p class="section-subtitle" style="margin:0 auto;">Every cake below was designed and baked for a real celebration in Sialkot &mdash; two-tier and multi-tier cakes, weddings and engagements, birthdays, baby celebrations and themed designs.</p>
     </div>
   </section>
 
@@ -21,40 +21,119 @@ $img = get_template_directory_uri() . '/images/gallery/';
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="birthday">Birthday</button>
         <button class="filter-btn" data-filter="wedding">Wedding</button>
+        <button class="filter-btn" data-filter="tiered">Tiered</button>
         <button class="filter-btn" data-filter="cupcakes">Cupcakes</button>
         <button class="filter-btn" data-filter="themed">Themed</button>
       </div>
 
       <div class="gallery-grid">
-        <div class="gallery-item reveal" data-category="wedding">
-          <img src="<?php echo esc_url( $img ); ?>wedding-tiered-rings.jpg" alt="Two-tier ivory wedding cake with rose gold ring topper">
+        <div class="gallery-item reveal" data-category="themed birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-frozen-elsa-castle.jpg" alt="Frozen themed birthday cake with an ice castle topper, Elsa and blue buttercream roses" loading="lazy">
         </div>
-        <div class="gallery-item reveal" data-category="birthday">
-          <img src="<?php echo esc_url( $img ); ?>birthday-teddy-candle.jpg" alt="Birthday cake with a lit candle and floral piping">
+        <div class="gallery-item reveal" data-category="themed birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-dinosaur-jungle.jpg" alt="Dinosaur jungle cake with green buttercream, fondant eggs and dinosaur toppers" loading="lazy">
         </div>
-        <div class="gallery-item reveal" data-category="cupcakes">
-          <img src="<?php echo esc_url( $img ); ?>themed-eid-cookies.jpg" alt="Box of pink and gold Eid-themed cookies and mini cupcakes">
-        </div>
-        <div class="gallery-item reveal" data-category="wedding">
-          <img src="<?php echo esc_url( $img ); ?>wedding-floral-tiered.jpg" alt="Three-tier white floral wedding cake">
-        </div>
-        <div class="gallery-item reveal" data-category="birthday">
-          <img src="<?php echo esc_url( $img ); ?>birthday-black-drip.jpg" alt="Black drip cake towers with happy birthday message">
+        <div class="gallery-item reveal" data-category="themed birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-bee-daisy-half-birthday.jpg" alt="Bee and daisy half-birthday cake with a Half Way To One topper" loading="lazy">
         </div>
         <div class="gallery-item reveal" data-category="themed">
-          <img src="<?php echo esc_url( $img ); ?>themed-sunflower-bouquet.jpg" alt="Cake designed as a sunflower bouquet">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-welcome-baby-girl-teddy.jpg" alt="Pink welcome baby cake with a fondant teddy bear, ladder and name blocks" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="themed">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-welcome-baby-boy-teddy.jpg" alt="Blue It's A Boy welcome cake with a fondant teddy bear, ladder and balloons" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="themed birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-spiderman-birthday.jpg" alt="Spider-Man themed birthday cake with comic-style toppers and a city skyline" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="wedding tiered">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-white-chrysanthemum.jpg" alt="Two-tier ivory wedding cake with white chrysanthemums on a gold board" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="wedding tiered">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-pearls-roses.jpg" alt="Two-tier white wedding cake with piped pearls, white roses and baby's breath" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="wedding tiered">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-veil-portrait.jpg" alt="Two-tier wedding cake with a fondant veil drape, hand-painted couple portrait and name topper" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="wedding tiered">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/tiered-vintage-pastel-three-tier.jpg" alt="Three-tier vintage buttercream cake with pastel piped swags and flowers" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="tiered">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/tiered-vintage-pink-bows.jpg" alt="Two-tier pink vintage cake with piped roses, bows and lace detailing" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="birthday tiered">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/tiered-sun-daisy-first-birthday.jpg" alt="Two-tier first birthday cake with daisies, pearls and a fondant sun topper" loading="lazy">
         </div>
         <div class="gallery-item reveal" data-category="birthday">
-          <img src="<?php echo esc_url( $img ); ?>birthday-red-velvet-ribbon.jpg" alt="Dark red velvet cake with black ribbon detailing">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-candles-floral-white.jpg" alt="Buttercream birthday cake with lit candles and fresh flowers" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="wedding tiered">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-three-tier-ivory-floral.jpg" alt="Three-tier ivory wedding cake with piped blossoms and fresh roses" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="wedding tiered">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-rings-monogram.jpg" alt="Two-tier engagement cake with monogram and ring topper" loading="lazy">
         </div>
         <div class="gallery-item reveal" data-category="birthday">
-          <img src="<?php echo esc_url( $img ); ?>birthday-floral-candles.jpg" alt="White birthday cake with fresh flowers and lit candles">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-heart-navy-gold.jpg" alt="Two-tier heart cake in navy and cream with gold leaf" loading="lazy">
         </div>
         <div class="gallery-item reveal" data-category="birthday">
-          <img src="<?php echo esc_url( $img ); ?>birthday-heart-pink-floral.jpg" alt="Heart-shaped pink and yellow floral birthday cake">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-fresh-fruit-cream.jpg" alt="Fresh cream cake topped with mango, peach and seasonal fruit" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="themed">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-graduation-sunflower.jpg" alt="Graduation cake with sunflowers and a fondant graduation cap" loading="lazy">
         </div>
         <div class="gallery-item reveal" data-category="birthday">
-          <img src="<?php echo esc_url( $img ); ?>birthday-heart-red-candle.jpg" alt="Heart-shaped cake with red piping and a lit candle">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-white-chocolate-drip.jpg" alt="White chocolate drip cake with pink baby's breath" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-heart-pink-pastel.jpg" alt="Pink heart cake with pastel buttercream ruffles" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-maroon-black-ribbon.jpg" alt="Deep maroon cake with piped shells and black ribbon detailing" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-teddy-candle-white.jpg" alt="White floral cake with a single candle, styled with a teddy bear" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-black-drip-tower.jpg" alt="Three-cake black drip tower for a birthday" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="themed cupcakes">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-eid-dessert-box.jpg" alt="Eid dessert box of decorated cookies and mini cupcakes in pink and gold" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="themed">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-sunflower-bouquet-cake.jpg" alt="Cake designed as a wrapped sunflower bouquet" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="themed">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-mayon-floral-fondant.jpg" alt="Mayon cake with bright fondant flowers and gold accents" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-chocolate-candles.jpg" alt="Chocolate buttercream cake with piped petals and tall candles" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-21-sunflower.jpg" alt="21st birthday sunflower cake styled with gold number balloons" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="wedding tiered">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-maroon-roses.jpg" alt="Two-tier maroon and cream cake with piped roses" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="themed tiered">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-boss-baby-tiered.jpg" alt="Two-tier Boss Baby themed cake with balloons and fondant details" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="themed">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-heart-roses-chocolates.jpg" alt="Heart cake with matching chocolates and a red rose bouquet" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="themed">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-sunflower-painted.jpg" alt="Buttercream cake hand-piped with sunflowers" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-teddy-polka-chocolate.jpg" alt="Chocolate polka dot cake with a fondant teddy bear topper" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="birthday">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/birthday-heart-blue-floral.jpg" alt="Blue and white heart birthday cake with piped ruffles" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="cupcakes">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/cupcakes-red-velvet-love-set.jpg" alt="Red velvet celebration cake with matching decorated cupcakes" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-category="themed">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-congrats-sunflowers.jpg" alt="Congratulations cake in gold script with a sunflower bouquet" loading="lazy">
         </div>
       </div>
     </div>
@@ -62,8 +141,11 @@ $img = get_template_directory_uri() . '/images/gallery/';
 
   <section class="cta-banner reveal">
     <h2>Love What You See?</h2>
-    <p>Send us your favorite design and we'll bring it to life for your event.</p>
-    <a href="https://www.instagram.com/the_bakingpalette/" target="_blank" rel="noopener" class="btn btn--light">Message Us on Instagram</a>
+    <p>Send us your favorite design and we'll bring it to life for your event &mdash; on Instagram or WhatsApp.</p>
+    <div class="cta-actions">
+      <a href="https://www.instagram.com/the_bakingpalette/" target="_blank" rel="noopener" class="btn btn--light">Message Us on Instagram</a>
+      <a href="https://wa.me/923289480799" target="_blank" rel="noopener" class="btn btn--light">WhatsApp 0328 9480799</a>
+    </div>
   </section>
 
   <div class="lightbox">

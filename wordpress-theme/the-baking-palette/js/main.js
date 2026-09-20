@@ -64,18 +64,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Gallery category filter
+  // Filter buttons: gallery items by category, testimonials by source
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  if (filterBtns.length && galleryItems.length) {
+  const filterItems = document.querySelectorAll('.gallery-item, .testimonial-card');
+  if (filterBtns.length && filterItems.length) {
     filterBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         filterBtns.forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
-        const category = btn.dataset.filter;
+        const wanted = btn.dataset.filter;
 
-        galleryItems.forEach((item) => {
-          if (category === 'all' || item.dataset.category === category) {
+        filterItems.forEach((item) => {
+          // An item can belong to several groups, e.g. "wedding tiered".
+          const groups = (item.dataset.category || item.dataset.source || '').split(/\s+/);
+          if (wanted === 'all' || groups.includes(wanted)) {
             item.style.display = '';
           } else {
             item.style.display = 'none';

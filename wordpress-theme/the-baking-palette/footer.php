@@ -34,8 +34,9 @@
         <div class="footer-col">
           <h4>Find Us</h4>
           <ul>
-            <li><a href="https://www.google.com/maps/search/?api=1&query=The+Baking+Palette+Sialkot" target="_blank" rel="noopener">📍 Sialkot, Pakistan</a></li>
+            <li><a href="https://maps.app.goo.gl/SYh3LS19zjtz57ar5" target="_blank" rel="noopener">📍 Sialkot, Pakistan</a></li>
             <li><a href="https://www.instagram.com/the_bakingpalette/" target="_blank" rel="noopener">@the_bakingpalette</a></li>
+            <li><a href="https://wa.me/923289480799" target="_blank" rel="noopener">💬 WhatsApp 0328 9480799</a></li>
           </ul>
         </div>
       </div>

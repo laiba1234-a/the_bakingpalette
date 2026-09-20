@@ -1,0 +1,6 @@
+# The Baking Palette — all crawlers welcome, including AI answer engines.
+User-agent: *
+Allow: /
+
+# Add the live domain here once the site is online, e.g.
+# Sitemap: https://example.com/sitemap.xml
