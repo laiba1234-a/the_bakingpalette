@@ -164,7 +164,9 @@ function tbp_seo_meta_tags( $title, $description, $social_desc, $url, $image ) {
 
 	printf( '<meta property="og:type" content="website" />' . "\n" );
 	printf( '<meta property="og:site_name" content="%s" />' . "\n", esc_attr( get_bloginfo( 'name' ) ) );
-	printf( '<meta property="og:locale" content="en_PK" />' . "\n" );
+	// Matches <html lang>, which comes from the same locale. "en_PK" was both
+	// inconsistent with it and not a locale Open Graph recognises.
+	printf( '<meta property="og:locale" content="%s" />' . "\n", esc_attr( get_locale() ) );
 	printf( '<meta property="og:title" content="%s" />' . "\n", esc_attr( $title ) );
 	printf( '<meta property="og:description" content="%s" />' . "\n", esc_attr( $social_desc ) );
 	printf( '<meta property="og:url" content="%s" />' . "\n", esc_url( $url ) );
