@@ -51,6 +51,27 @@ a {
   color: inherit;
 }
 
+/* Form controls do not inherit typography or colour from the page, so browsers
+   fall back to their own defaults (blue button text on iOS/Safari). Pin them
+   to the theme. */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  color: var(--color-brown);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 ul {
   list-style: none;
 }
@@ -113,8 +134,12 @@ h1, h2, h3, h4 {
   gap: 8px;
   padding: 14px 30px;
   border-radius: 999px;
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--color-brown);
+  text-decoration: none;
   border: 2px solid transparent;
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
@@ -504,10 +529,12 @@ h1, h2, h3, h4 {
   border-radius: 999px;
   border: 1px solid rgba(61, 43, 31, 0.2);
   background: transparent;
+  font-family: var(--font-body);
   font-weight: 500;
   font-size: 0.9rem;
+  color: var(--color-brown);
   cursor: pointer;
-  transition: background var(--transition), color var(--transition);
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
 }
 
 .filter-btn.active,
@@ -560,6 +587,7 @@ h1, h2, h3, h4 {
   top: 32px;
   right: 40px;
   color: var(--color-white);
+  line-height: 1;
   font-size: 2rem;
   background: none;
   border: none;
