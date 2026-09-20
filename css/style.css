@@ -1166,9 +1166,44 @@ h1, h2, h3, h4 {
     gap: 14px;
   }
 
-  .occasion-grid {
+  /* Card grids stay two-up down to 560px; below that the tracks get
+     narrower than the cards' own content and push the page sideways,
+     so they stack instead. */
+  .highlights-grid,
+  .occasion-grid,
+  .testimonials-grid,
+  .menu-grid,
+  .process-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .highlights-grid > *,
+  .occasion-grid > *,
+  .testimonials-grid > *,
+  .menu-grid > *,
+  .process-grid > *,
+  .values-grid > *,
+  .gallery-grid > * {
+    min-width: 0;
+  }
+
+  .highlight-card {
+    padding: 32px 24px;
+  }
+
+  .testimonial-card,
+  .menu-card {
+    padding: 26px 22px;
+  }
+
+  .occasion-body {
+    padding: 22px 20px 26px;
+  }
+
+  .menu-card-header {
+    flex-wrap: wrap;
+    gap: 6px;
   }
 
   .faq-item {
