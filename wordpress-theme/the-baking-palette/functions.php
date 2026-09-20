@@ -25,6 +25,102 @@ function tbp_setup() {
 add_action( 'after_setup_theme', 'tbp_setup' );
 
 /**
+ * One post per cake, so each design gets its own page, its own URL to share in
+ * a DM, and its own Product schema. The gallery page lists them; the images
+ * themselves live in the theme, referenced by the _tbp_image meta field.
+ */
+function tbp_register_cake_post_type() {
+	register_post_type(
+		'tbp_cake',
+		array(
+			'labels'       => array(
+				'name'          => __( 'Cakes', 'the-baking-palette' ),
+				'singular_name' => __( 'Cake', 'the-baking-palette' ),
+				'add_new_item'  => __( 'Add New Cake', 'the-baking-palette' ),
+				'edit_item'     => __( 'Edit Cake', 'the-baking-palette' ),
+			),
+			'public'       => true,
+			'has_archive'  => false, // The Gallery page is the archive.
+			'menu_icon'    => 'dashicons-format-image',
+			'supports'     => array( 'title', 'editor', 'excerpt', 'page-attributes' ),
+			'rewrite'      => array( 'slug' => 'cakes', 'with_front' => false ),
+			'show_in_rest' => true,
+		)
+	);
+
+	foreach ( tbp_cake_detail_fields() as $key => $label ) {
+		register_post_meta(
+			'tbp_cake',
+			'_tbp_' . $key,
+			array(
+				'type'          => 'string',
+				'single'        => true,
+				'show_in_rest'  => true,
+				'auth_callback' => function () {
+					return current_user_can( 'edit_posts' );
+				},
+			)
+		);
+	}
+
+	register_post_meta( 'tbp_cake', '_tbp_image', array(
+		'type'          => 'string',
+		'single'        => true,
+		'show_in_rest'  => true,
+		'auth_callback' => function () {
+			return current_user_can( 'edit_posts' );
+		},
+	) );
+	register_post_meta( 'tbp_cake', '_tbp_alt', array(
+		'type'          => 'string',
+		'single'        => true,
+		'show_in_rest'  => true,
+		'auth_callback' => function () {
+			return current_user_can( 'edit_posts' );
+		},
+	) );
+	register_post_meta( 'tbp_cake', '_tbp_categories', array(
+		'type'          => 'string',
+		'single'        => true,
+		'show_in_rest'  => true,
+		'auth_callback' => function () {
+			return current_user_can( 'edit_posts' );
+		},
+	) );
+}
+add_action( 'init', 'tbp_register_cake_post_type' );
+
+/**
+ * The detail rows shown on a cake page, in display order.
+ */
+function tbp_cake_detail_fields() {
+	return array(
+		'occasion'  => __( 'Occasion', 'the-baking-palette' ),
+		'size'      => __( 'Size', 'the-baking-palette' ),
+		'flavour'   => __( 'Flavour', 'the-baking-palette' ),
+		'finish'    => __( 'Finish', 'the-baking-palette' ),
+		'price'     => __( 'Price', 'the-baking-palette' ),
+		'lead_time' => __( 'Lead time', 'the-baking-palette' ),
+	);
+}
+
+/**
+ * URL of a cake's photo, which lives in the theme rather than the media library.
+ */
+function tbp_cake_image_url( $post_id, $ext = 'webp' ) {
+	$file = get_post_meta( $post_id, '_tbp_image', true );
+	if ( ! $file ) {
+		return '';
+	}
+
+	if ( 'jpg' === $ext ) {
+		$file = preg_replace( '/\.webp$/', '.jpg', $file );
+	}
+
+	return get_template_directory_uri() . '/images/gallery/' . $file;
+}
+
+/**
  * Version assets by file modification time so edits reach visitors
  * who already have the old file cached.
  */
@@ -113,6 +209,8 @@ function tbp_seo_head() {
 		tbp_seo_gallery_page();
 	} elseif ( is_page( 'testimonials' ) ) {
 		tbp_seo_testimonials_page();
+	} elseif ( is_singular( 'tbp_cake' ) ) {
+		tbp_seo_cake_page();
 	}
 }
 add_action( 'wp_head', 'tbp_seo_head', 5 );
@@ -137,6 +235,9 @@ function tbp_seo_title() {
 	}
 	if ( is_page( 'testimonials' ) ) {
 		return 'Customer Reviews | The Baking Palette, Sialkot';
+	}
+	if ( is_singular( 'tbp_cake' ) ) {
+		return get_the_title() . ' | The Baking Palette, Sialkot';
 	}
 
 	return '';
@@ -246,6 +347,96 @@ function tbp_bakery_schema( $image = '' ) {
 			),
 		),
 	);
+}
+
+/**
+ * A single cake: meta tags plus a Product graph carrying the price, so the
+ * design can surface on its own in search rather than only inside the gallery.
+ */
+function tbp_seo_cake_page() {
+	$id          = get_the_ID();
+	$image       = tbp_cake_image_url( $id, 'jpg' );
+	$title       = tbp_seo_title();
+	$excerpt     = get_the_excerpt();
+	$description = $excerpt ? wp_strip_all_tags( $excerpt ) : wp_strip_all_tags( get_the_content() );
+	$description = trim( preg_replace( '/\s+/', ' ', $description ) );
+
+	tbp_seo_meta_tags( $title, $description, $description, get_permalink(), $image );
+
+	$product = array(
+		'@context'    => 'https://schema.org',
+		'@type'       => 'Product',
+		'name'        => get_the_title(),
+		'description' => $description,
+		'image'       => $image,
+		'url'         => get_permalink(),
+		'brand'       => array(
+			'@type' => 'Brand',
+			'name'  => 'The Baking Palette',
+		),
+		'category'    => get_post_meta( $id, '_tbp_occasion', true ),
+	);
+
+	$offer = tbp_cake_offer_schema( get_post_meta( $id, '_tbp_price', true ) );
+	if ( $offer ) {
+		$product['offers'] = $offer;
+	}
+
+	$breadcrumb = array(
+		'@context'        => 'https://schema.org',
+		'@type'           => 'BreadcrumbList',
+		'itemListElement' => array(
+			array( '@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => home_url( '/' ) ),
+			array( '@type' => 'ListItem', 'position' => 2, 'name' => 'Gallery', 'item' => home_url( '/gallery/' ) ),
+			array( '@type' => 'ListItem', 'position' => 3, 'name' => get_the_title() ),
+		),
+	);
+
+	tbp_seo_print_schema( array( $product, $breadcrumb ) );
+}
+
+/**
+ * Turn a price string into schema. "Rs. 8,000 - 8,400" becomes an AggregateOffer
+ * with a low and high price; a single figure becomes a plain Offer; anything
+ * quoted on request gets no offer at all rather than an invented number.
+ */
+function tbp_cake_offer_schema( $price ) {
+	if ( ! $price ) {
+		return null;
+	}
+
+	$numbers = array();
+	if ( preg_match_all( '/([0-9][0-9,]*)/', $price, $matches ) ) {
+		foreach ( $matches[1] as $number ) {
+			$numbers[] = (int) str_replace( ',', '', $number );
+		}
+	}
+
+	if ( ! $numbers ) {
+		return null; // e.g. "Quote on request".
+	}
+
+	$base = array(
+		'priceCurrency' => 'PKR',
+		'availability'  => 'https://schema.org/InStock',
+		'seller'        => array(
+			'@type' => 'Bakery',
+			'name'  => 'The Baking Palette',
+		),
+	);
+
+	if ( count( $numbers ) > 1 ) {
+		return array_merge(
+			$base,
+			array(
+				'@type'     => 'AggregateOffer',
+				'lowPrice'  => (string) min( $numbers ),
+				'highPrice' => (string) max( $numbers ),
+			)
+		);
+	}
+
+	return array_merge( $base, array( '@type' => 'Offer', 'price' => (string) $numbers[0] ) );
 }
 
 /**

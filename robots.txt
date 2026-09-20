@@ -2,5 +2,4 @@
 User-agent: *
 Allow: /
 
-# Add the live domain here once the site is online, e.g.
-# Sitemap: https://example.com/sitemap.xml
+Sitemap: https://laiba1234-a.github.io/the_bakingpalette/sitemap.xml

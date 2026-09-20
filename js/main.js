@@ -60,7 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.gallery-item').forEach((item) => {
       item.addEventListener('click', () => {
-        lightboxContent.innerHTML = item.innerHTML;
+        // Carry the cake's written details into the lightbox alongside the
+        // photo, so the enlarged view explains what it is showing.
+        const caption = item.parentElement
+          ? item.parentElement.querySelector('.gallery-caption')
+          : null;
+        lightboxContent.innerHTML = item.innerHTML + (caption ? caption.outerHTML : '');
         lightbox.classList.add('open');
       });
     });
@@ -77,7 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Filter buttons: gallery items by category, testimonials by source
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const filterItems = document.querySelectorAll('.gallery-item, .testimonial-card');
+  // data-category lives on the gallery card (the grid child), not the tile.
+  const filterItems = document.querySelectorAll('.gallery-card, .testimonial-card');
   if (filterBtns.length && filterItems.length) {
     filterBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
