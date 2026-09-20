@@ -457,7 +457,7 @@ get_header();
 
       <div class="review-cta reveal">
         <div class="stars">★★★★★</div>
-        <h3>Rated 5.0 on Google</h3>
+        <h2>Rated 5.0 on Google</h2>
         <p>Loved your cake? Leave us a review on Google Maps &mdash; it helps other customers find us.</p>
         <a href="https://maps.app.goo.gl/SYh3LS19zjtz57ar5" target="_blank" rel="noopener" class="btn btn--primary">Read &amp; Write Google Reviews</a>
       </div>

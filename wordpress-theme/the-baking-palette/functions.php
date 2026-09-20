@@ -79,6 +79,19 @@ function tbp_fallback_menu() {
 }
 
 /**
+ * Keep the XML sitemap to the pages that matter. A five-page brochure site has
+ * no author archives or categories worth crawling.
+ */
+function tbp_trim_sitemap( $provider, $name ) {
+	if ( in_array( $name, array( 'users', 'taxonomies' ), true ) ) {
+		return false;
+	}
+
+	return $provider;
+}
+add_filter( 'wp_sitemaps_add_provider', 'tbp_trim_sitemap', 10, 2 );
+
+/**
  * SEO tags: meta description, Open Graph / Twitter cards and JSON-LD
  * structured data for search engines and AI answer engines.
  *
@@ -105,11 +118,49 @@ function tbp_seo_head() {
 add_action( 'wp_head', 'tbp_seo_head', 5 );
 
 /**
+ * The search-result title for each page, used both for the <title> element
+ * (via pre_get_document_title) and for the Open Graph / Twitter tags, so the
+ * two can never drift apart.
+ */
+function tbp_seo_title() {
+	if ( is_front_page() ) {
+		return 'The Baking Palette | Custom Tiered, Wedding & Birthday Cakes in Sialkot';
+	}
+	if ( is_page( 'about' ) ) {
+		return 'About Us | The Baking Palette — Custom Tiered Cake Studio in Sialkot';
+	}
+	if ( is_page( 'menu' ) ) {
+		return 'Cake Menu & Prices in Sialkot | The Baking Palette';
+	}
+	if ( is_page( 'gallery' ) ) {
+		return 'Cake Gallery | Tiered, Wedding & Birthday Cakes in Sialkot';
+	}
+	if ( is_page( 'testimonials' ) ) {
+		return 'Customer Reviews | The Baking Palette, Sialkot';
+	}
+
+	return '';
+}
+
+/**
+ * Use those titles for the <title> element. Without this WordPress falls back
+ * to "<page name> – <site name>", which wastes the strongest on-page signal.
+ */
+function tbp_seo_document_title( $title ) {
+	$seo_title = tbp_seo_title();
+
+	return $seo_title ? $seo_title : $title;
+}
+add_filter( 'pre_get_document_title', 'tbp_seo_document_title' );
+
+/**
  * Print the shared meta description, Open Graph and Twitter tags for a page.
+ *
+ * The canonical link is left to WordPress core (rel_canonical), so the page
+ * carries exactly one.
  */
 function tbp_seo_meta_tags( $title, $description, $social_desc, $url, $image ) {
 	printf( '<meta name="description" content="%s" />' . "\n", esc_attr( $description ) );
-	printf( '<link rel="canonical" href="%s" />' . "\n", esc_url( $url ) );
 
 	printf( '<meta property="og:type" content="website" />' . "\n" );
 	printf( '<meta property="og:site_name" content="%s" />' . "\n", esc_attr( get_bloginfo( 'name' ) ) );
@@ -201,7 +252,7 @@ function tbp_bakery_schema( $image = '' ) {
 function tbp_seo_about_page() {
 	$theme_uri   = get_template_directory_uri();
 	$image       = $theme_uri . '/images/gallery/tiered-vintage-pastel-three-tier.jpg';
-	$title       = 'About Us | The Baking Palette — Custom Tiered Cake Studio in Sialkot';
+	$title       = tbp_seo_title();
 	$description = 'The Baking Palette is a custom cake studio in Sialkot, specialising in two-tier and multi-tier cakes for weddings, engagements and birthdays.';
 	$social_desc = 'A custom cake studio in Sialkot specialising in two-tier and multi-tier cakes for weddings, engagements, birthdays and baby celebrations.';
 
@@ -225,7 +276,7 @@ function tbp_seo_about_page() {
 function tbp_seo_front_page() {
 	$home        = home_url( '/' );
 	$image       = get_template_directory_uri() . '/images/gallery/wedding-three-tier-ivory-floral.jpg';
-	$title       = 'The Baking Palette | Custom Tiered, Wedding & Birthday Cakes in Sialkot';
+	$title       = tbp_seo_title();
 	$description = 'Custom premium cakes in Sialkot — two-tier and multi-tier wedding cakes, engagement, birthday and themed cakes, plus cupcakes. Order on Instagram or WhatsApp.';
 	$social_desc = 'Two-tier and multi-tier wedding cakes, engagement, birthday and themed cakes, cupcakes and fondant cookies — handcrafted to order in Sialkot.';
 
@@ -269,7 +320,7 @@ function tbp_seo_front_page() {
  */
 function tbp_seo_menu_page() {
 	$image       = get_template_directory_uri() . '/images/gallery/birthday-chocolate-candles.jpg';
-	$title       = 'Cake Menu & Prices in Sialkot | The Baking Palette';
+	$title       = tbp_seo_title();
 	$description = 'Cake prices in Sialkot: fresh cream from Rs. 1,800/lb, buttercream from Rs. 2,000/lb, premium flavors, cupcake boxes, and tiered cakes quoted on request.';
 	$social_desc = 'Cake flavors, cupcake boxes and pricing for custom and tiered cakes in Sialkot, with fresh cream and buttercream rates.';
 
@@ -394,7 +445,7 @@ function tbp_seo_product_list_item( $position, $name, $description, $offer ) {
 function tbp_seo_gallery_page() {
 	$theme_uri   = get_template_directory_uri();
 	$image       = $theme_uri . '/images/gallery/tiered-vintage-pastel-three-tier.jpg';
-	$title       = 'Cake Gallery | Tiered, Wedding & Birthday Cakes in Sialkot';
+	$title       = tbp_seo_title();
 	$description = 'Real cakes by The Baking Palette in Sialkot — two-tier and multi-tier wedding, engagement, birthday, themed and festive designs, plus cupcakes.';
 	$social_desc = 'Real tiered, wedding, birthday and themed cakes handcrafted by The Baking Palette in Sialkot.';
 
@@ -445,7 +496,7 @@ function tbp_seo_gallery_page() {
  */
 function tbp_seo_testimonials_page() {
 	$image       = get_template_directory_uri() . '/images/gallery/wedding-two-tier-pearls-roses.jpg';
-	$title       = 'Customer Reviews | The Baking Palette, Sialkot';
+	$title       = tbp_seo_title();
 	$description = 'Real Google reviews and Instagram messages from customers of The Baking Palette, a custom cake studio in Sialkot making tiered and themed cakes.';
 	$social_desc = 'Real Google and Instagram reviews from customers of The Baking Palette in Sialkot.';
 

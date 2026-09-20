@@ -22,7 +22,7 @@ get_header();
       <div class="about-grid">
         <div class="reveal">
           <div class="placeholder-tile" style="padding:0;border:none;">
-            <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/tiered-vintage-pastel-three-tier.jpg" alt="Three-tier vintage buttercream cake with pastel piped swags and flowers by The Baking Palette" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+            <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/tiered-vintage-pastel-three-tier.webp" alt="Three-tier vintage buttercream cake with pastel piped swags and flowers by The Baking Palette" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
           </div>
         </div>
         <div class="about-content reveal">

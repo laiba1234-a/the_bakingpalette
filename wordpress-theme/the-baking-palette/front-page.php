@@ -28,7 +28,7 @@
       </div>
       <div class="hero-visual">
         <div class="placeholder-tile" style="padding:0;border:none;">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-three-tier-ivory-floral.jpg" alt="Three-tier ivory wedding cake with piped blossoms and fresh roses" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-three-tier-ivory-floral.webp" alt="Three-tier ivory wedding cake with piped blossoms and fresh roses" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
         </div>
         <div class="floating-card">
           <div class="icon-badge">✨</div>
@@ -79,42 +79,42 @@
       </div>
       <div class="occasion-grid">
         <article class="occasion-card reveal">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/tiered-vintage-pastel-three-tier.jpg" alt="Three-tier vintage buttercream cake with pastel piped swags and flowers" loading="lazy">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/tiered-vintage-pastel-three-tier.webp" alt="Three-tier vintage buttercream cake with pastel piped swags and flowers" loading="lazy">
           <div class="occasion-body">
             <h3>Wedding &amp; Walima Cakes</h3>
             <p>Two and three-tier wedding cakes in ivory, blush or maroon, dressed with piped pearls, roses and fresh florals.</p>
           </div>
         </article>
         <article class="occasion-card reveal">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-veil-portrait.jpg" alt="Two-tier wedding cake with a fondant veil drape, hand-painted couple portrait and name topper" loading="lazy">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-veil-portrait.webp" alt="Two-tier wedding cake with a fondant veil drape, hand-painted couple portrait and name topper" loading="lazy">
           <div class="occasion-body">
             <h3>Engagement &amp; Nikkah</h3>
             <p>Ring toppers, monograms, hand-painted portraits and name plaques for the day the story starts.</p>
           </div>
         </article>
         <article class="occasion-card reveal">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/tiered-sun-daisy-first-birthday.jpg" alt="Two-tier first birthday cake with daisies, pearls and a fondant sun topper" loading="lazy">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/tiered-sun-daisy-first-birthday.webp" alt="Two-tier first birthday cake with daisies, pearls and a fondant sun topper" loading="lazy">
           <div class="occasion-body">
             <h3>Birthdays &amp; First Birthdays</h3>
             <p>Heart cakes, number cakes, character themes and tiered first-birthday cakes built around the party theme.</p>
           </div>
         </article>
         <article class="occasion-card reveal">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-welcome-baby-girl-teddy.jpg" alt="Pink welcome baby cake with a fondant teddy bear, ladder and name blocks" loading="lazy">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-welcome-baby-girl-teddy.webp" alt="Pink welcome baby cake with a fondant teddy bear, ladder and name blocks" loading="lazy">
           <div class="occasion-body">
             <h3>Baby Showers &amp; Welcome Baby</h3>
             <p>Soft pastel cakes with fondant teddies, blocks and name toppers to welcome the newest arrival.</p>
           </div>
         </article>
         <article class="occasion-card reveal">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-eid-dessert-box.jpg" alt="Eid dessert box of decorated cookies and mini cupcakes in pink and gold" loading="lazy">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-eid-dessert-box.webp" alt="Eid dessert box of decorated cookies and mini cupcakes in pink and gold" loading="lazy">
           <div class="occasion-body">
             <h3>Eid &amp; Festive Boxes</h3>
             <p>Dessert boxes of cupcakes and fondant-decorated cookies, perfect for gifting and giveaways.</p>
           </div>
         </article>
         <article class="occasion-card reveal">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-graduation-sunflower.jpg" alt="Graduation cake with sunflowers and a fondant graduation cap" loading="lazy">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/themed-graduation-sunflower.webp" alt="Graduation cake with sunflowers and a fondant graduation cap" loading="lazy">
           <div class="occasion-body">
             <h3>Graduation &amp; Congratulations</h3>
             <p>Celebration cakes for results, promotions and farewells &mdash; finished with florals, caps and custom messages.</p>
@@ -134,16 +134,16 @@
       </div>
       <div class="gallery-grid gallery-grid--home">
         <div class="gallery-item reveal">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-pearls-roses.jpg" alt="Two-tier white wedding cake with piped pearls, white roses and baby's breath" loading="lazy">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-pearls-roses.webp" alt="Two-tier white wedding cake with piped pearls, white roses and baby's breath" loading="lazy">
         </div>
         <div class="gallery-item reveal">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/tiered-vintage-pink-bows.jpg" alt="Two-tier pink vintage cake with piped roses, bows and lace detailing" loading="lazy">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/tiered-vintage-pink-bows.webp" alt="Two-tier pink vintage cake with piped roses, bows and lace detailing" loading="lazy">
         </div>
         <div class="gallery-item reveal">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-rings-monogram.jpg" alt="Two-tier engagement cake with monogram and ring topper" loading="lazy">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-rings-monogram.webp" alt="Two-tier engagement cake with monogram and ring topper" loading="lazy">
         </div>
         <div class="gallery-item reveal">
-          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-maroon-roses.jpg" alt="Two-tier maroon and cream cake with piped roses" loading="lazy">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gallery/wedding-two-tier-maroon-roses.webp" alt="Two-tier maroon and cream cake with piped roses" loading="lazy">
         </div>
       </div>
       <div style="text-align:center;margin-top:44px;">

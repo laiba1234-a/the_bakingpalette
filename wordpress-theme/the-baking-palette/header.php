@@ -8,6 +8,8 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <!-- Navbar -->
   <header class="navbar">
     <div class="container">
@@ -42,3 +44,5 @@
       </div>
     </div>
   </header>
+
+  <main id="main">

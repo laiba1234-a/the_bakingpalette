@@ -6,15 +6,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelector('.nav-links');
 
   if (navToggle && navLinks) {
+    navToggle.setAttribute('aria-expanded', 'false');
+
     navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('open');
-      navLinks.classList.toggle('open');
+      const open = navToggle.classList.toggle('open');
+      navLinks.classList.toggle('open', open);
+      // Tell screen readers whether the menu is currently open.
+      navToggle.setAttribute('aria-expanded', String(open));
     });
 
     navLinks.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         navToggle.classList.remove('open');
         navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
       });
     });
   }
