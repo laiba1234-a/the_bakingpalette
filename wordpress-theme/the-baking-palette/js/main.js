@@ -52,7 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxContent = lightbox.querySelector('.lightbox-content');
     const closeBtn = lightbox.querySelector('.lightbox-close');
 
-    document.querySelectorAll('.gallery-item').forEach((item) => {
+    // Gallery tiles that link to a cake page navigate instead of opening the
+    // lightbox; the lightbox stays for tiles that are not links.
+    document.querySelectorAll('.gallery-item:not(a)').forEach((item) => {
       item.addEventListener('click', () => {
         lightboxContent.innerHTML = item.innerHTML;
         lightbox.classList.add('open');
@@ -191,5 +193,40 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  });
+
+  // Instagram has no prefilled-message link like wa.me, so this button copies
+  // the cake's name and link to the clipboard instead. On most phones,
+  // following the link replaces the current page immediately (target="_blank"
+  // is ignored by many mobile/in-app browsers), which wiped the confirmation
+  // before anyone could read it. So the click is held for a beat, the "copied"
+  // toast is shown, and only then does the page move on to Instagram. The
+  // toast is appended straight to <body> rather than living in the page
+  // markup: this page's scroll-reveal elements sit under a `filter` (even
+  // `blur(0px)` at rest counts), and a `filter` on any ancestor turns it into
+  // the containing block for `position: fixed` descendants, which pinned an
+  // in-page toast hundreds of pixels below the viewport instead of on screen.
+  document.querySelectorAll('[data-copy-text]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (!navigator.clipboard) {
+        return;
+      }
+      event.preventDefault();
+      const destination = link.href;
+
+      const toast = document.createElement('p');
+      toast.className = 'cake-copy-toast';
+      toast.textContent = "Copied this cake's name and link — paste it into the Instagram chat once it opens.";
+      document.body.appendChild(toast);
+      requestAnimationFrame(() => toast.classList.add('is-visible'));
+
+      // Best-effort copy: a stuck or denied clipboard permission must never
+      // trap the customer on this page, so it isn't awaited before moving on.
+      navigator.clipboard.writeText(link.dataset.copyText).catch(() => {});
+
+      setTimeout(() => {
+        window.location.href = destination;
+      }, 1400);
+    });
   });
 });
