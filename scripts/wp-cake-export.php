@@ -9,6 +9,7 @@
  */
 $posts = get_posts( array(
 	'post_type'      => 'tbp_cake',
+	'post_status'    => 'any',
 	'posts_per_page' => -1,
 	'orderby'        => 'menu_order',
 	'order'          => 'ASC',
@@ -27,6 +28,7 @@ foreach ( $posts as $p ) {
 		'post_title'   => $p->post_title,
 		'post_content' => $p->post_content,
 		'post_name'    => $p->post_name,
+		'post_status'  => $p->post_status,
 		'menu_order'   => (int) $p->menu_order,
 		'meta'         => $meta,
 	);

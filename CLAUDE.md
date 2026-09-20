@@ -76,9 +76,11 @@ scp scripts/wp-cake-import.php bakingpalette:/tmp/
 ssh bakingpalette "cd <wp-root> && wp eval-file /tmp/wp-cake-import.php"
 ```
 
-Import matches on slug (`post_name`), so it's safe to re-run — existing cakes
-get updated in place, not duplicated. The theme must already be deployed
-(so `tbp_cake` is registered) and the images must already exist on the
+Import matches existing posts via a stable `_tbp_import_slug` meta value (not
+the live `post_name`, which WordPress can silently suffix on a slug
+collision), so it's safe to re-run — existing cakes get updated in place, not
+duplicated. The theme must already be deployed (so `tbp_cake` is registered)
+and the images must already exist on the
 target before importing.
 
 ### Cache — two separate layers
