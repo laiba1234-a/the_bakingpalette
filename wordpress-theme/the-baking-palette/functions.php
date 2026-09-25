@@ -829,8 +829,11 @@ function tbp_serve_llms_txt() {
 		return;
 	}
 
+	// WordPress has already queued a 404 status by this point (no post/page
+	// matches this URI) — override it, since the file exists and should be
+	// served as 200, not as a not-found response with a body attached.
+	status_header( 200 );
 	header( 'Content-Type: text/plain; charset=utf-8' );
-	header( 'X-Robots-Tag: noindex' );
 	echo file_get_contents( $file ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- plain text file shipped with the theme.
 	exit;
 }

@@ -99,6 +99,23 @@ def caption_html(row, indent):
     return '\n'.join(parts)
 
 
+ALT_ATTR = re.compile(r'\salt="[^"]*"')
+
+
+def synced_alt(img_tag, alt_text):
+    """Return img_tag with its alt attribute set from the CSV's alt column.
+
+    The CSV is the documented source of truth for this content (see
+    content/README.md), so a later edit to a row's `alt` cell should reach
+    the page on the next build instead of the tag staying frozen at
+    whatever alt text was baked in on an earlier run.
+    """
+    escaped = html.escape(alt_text, quote=True)
+    if ALT_ATTR.search(img_tag):
+        return ALT_ATTR.sub(' alt="%s"' % escaped, img_tag, count=1)
+    return img_tag.replace('<img ', '<img alt="%s" ' % escaped, 1)
+
+
 def rebuild_tiles(page, rows, counts):
     def replace(m):
         slug = m.group('slug')
@@ -108,12 +125,15 @@ def rebuild_tiles(page, rows, counts):
         if cap:
             counts['captioned'] += 1
         counts['tiles'] += 1
+        img = m.group('img')
+        if row.get('alt'):
+            img = synced_alt(img, row['alt'])
         # `reveal` belongs on the grid child, not the inner tile: the staggered
         # transition delays in style.css key off `.gallery-grid .reveal:nth-child`.
         block = [
             '<figure class="gallery-card reveal" data-category="%s">' % category,
             '          <div class="gallery-item">',
-            '            %s' % m.group('img'),
+            '            %s' % img,
             '          </div>',
         ]
         if cap:
